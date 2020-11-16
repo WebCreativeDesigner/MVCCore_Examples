@@ -1,0 +1,61 @@
+﻿<!-- This controller is used the IEnumerable<CalculatedDataModel which was created by the interface and the repository -->
+@model IEnumerable<CalculatedDataModel>
+@{
+    ViewData["Title"] = "Calculation Page";
+}
+
+<!--<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">Calculation building Web apps with ASP.NET Core</a>.</p>
+    <div>@ViewBag.Message</div>
+</div>
+    -->
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div id="divCalculationSummary" style="display:none; border:dotted">
+        Calculation Summary is: <br />
+        Y = (m*Specific Raw data value x) + C <br />
+        A = 1 / Specific Raw Data value x <br />
+        B = A + Y <br />
+        b = B / RawData X array.Count() <br />
+        Calculated = X + b <br />
+    </div>
+    <center>
+        <button id="btnShowHide" onclick="ShowHide()">Show Calculation</button>
+        <input type="button" value="Export to Excel" onclick="location.href='@Url.Action("Excel", "Calculation")'" />
+        <input type="button" value="Export to CSV" onclick="location.href='@Url.Action("CSV", "Calculation")'" />
+    </center>
+    <br />
+    <br />
+
+    <table id="example" class="table table-bordered table-responsive table-hover">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">RawData</th>
+            <th scope="col">m</th>
+            <th scope="col">c</th>
+            <th scope="col">Calculated</th>
+        </tr>
+        <tbody>
+            @foreach (var element in Model)
+            {
+
+                <tr>
+                    <!-- <p>Html.DisplayFor(m => element)</p> -->
+                    <td>@element.Id</td>
+                    <td>@element.RawData</td>
+                    <td>@element.m</td>
+                    <td>@element.c</td>
+                    <td>@element.Calculated</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>
+

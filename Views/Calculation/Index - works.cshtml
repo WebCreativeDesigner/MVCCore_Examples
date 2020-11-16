@@ -1,0 +1,24 @@
+﻿@model CalculatedListViewModel
+@{
+    ViewData["Title"] = "Calculation Page";
+}
+
+<!--<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">Calculation building Web apps with ASP.NET Core</a>.</p>
+    <div>@ViewBag.Message</div>
+</div>
+    -->
+
+@foreach (var element in Model.RawData)
+{
+    <!-- <p>Html.DisplayFor(m => element)</p> -->
+    <br>@element.ToString()
+}
+
+<p>Now....calculated data............</p>
+@foreach (var item in @Model.CalculatedData)
+{
+    <!--<li>item.ToString()</li> -->
+    <br />@item.ToString()
+}
