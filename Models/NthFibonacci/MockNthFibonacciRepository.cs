@@ -8,26 +8,27 @@ namespace MVCCore_Examples.Models.NthFibonacci
     public class MockNthFibonacciRepository : INthFibonacciRepository
     {
         private int Id;
-        private int Number;
+        private Decimal Number;
         private Boolean NthFibonacciType;
         private List<NthFibonacciModel> NthFibonacciModels;
-        decimal CalculatedNumber1 = 0;
+        private decimal CalculatedNumber1 = 0;
         private Boolean CalculatedNumber1_Validity;
-        decimal CalculatedNumber2 = 0;
+        private decimal CalculatedNumber2 = 0;
         private Boolean CalculatedNumber2_Validity;
-        private Boolean res;
-        private Int64 a;
+        // private Boolean res;
+        private Int64 a; 
+
         public MockNthFibonacciRepository()
         {
             this.NthFibonacciModels = new List<NthFibonacciModel>();
         }
 
-        public List<NthFibonacciModel> Get_Nth_Fibonacci_Repository(int Number)
+        public List<NthFibonacciModel> Get_Nth_Fibonacci_Repository(Double Number)
         {
             this.Id = 1;
             //this.Number = 5;  // this is result in true
             // this.Number = 3;  // this is result in true
-            this.Number = Number;
+            this.Number = (decimal)Number;
             //this.Number = 4;  // this will result in a True
 
             //this.CalculatedNumber1 = Convert.ToDecimal(Math.Sqrt(5 * (Number * Number) - 4));
@@ -66,9 +67,9 @@ namespace MVCCore_Examples.Models.NthFibonacci
             return this.NthFibonacciModels.ToList();
         }
 
-        public Boolean Is_Fibonacci_Number(int Number)
+        public Boolean Is_Fibonacci_Number(double Number)
         {
-            this.Number = Number;
+            this.Number = Convert.ToDecimal(Number);
 
             CalculatedNumber1_Validity = Int64.TryParse(Convert.ToString(Math.Sqrt(5 * (Number * Number) + 4)), out a);
             CalculatedNumber2_Validity = Int64.TryParse(Convert.ToString(Math.Sqrt(5 * (Number * Number) - 4)), out a);
