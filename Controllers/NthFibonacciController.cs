@@ -6,12 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MVCCore_Examples.Models.NthFibonacci;
 
-
 namespace MVCCore_Examples.Controllers
 {
     public class NthFibonacciController : Controller
     {
-        private List<NthFibonacciModel> NthFibonacciModel = null;
+        private List<NthFibonacciModel> NthFibonacciModelList = null;
         private INthFibonacciRepository repository = null;
 
         private readonly ILogger<NthFibonacciController> _logger;
@@ -20,7 +19,7 @@ namespace MVCCore_Examples.Controllers
         {
             _logger = logger;
             this.repository = _repository;
-            this.NthFibonacciModel = new List<NthFibonacciModel>();
+            this.NthFibonacciModelList = new List<NthFibonacciModel>();
         }
 
         [HttpGet]
@@ -28,27 +27,17 @@ namespace MVCCore_Examples.Controllers
         {
             //return View();
             int Number = 4;
-            //NthFibonacciModel = (List<NthFibonacciModel>)repository.Get_Nth_Fibonacci_Repository(Number);
-            NthFibonacciListViewModel NthFibonacciListViewModel = new NthFibonacciListViewModel();
-            //return View(NthFibonacciModel.ToList());
-            NthFibonacciListViewModel.NthFibonacciModels = repository.Get_Nth_Fibonacci_Repository(Convert.ToDouble(Number));
-            NthFibonacciListViewModel.Number = Convert.ToString(Number);
-            return View(NthFibonacciListViewModel);
+            NthFibonacciModelList = (List<NthFibonacciModel>)repository.Get_Nth_Fibonacci_Repository(Number);
+            return View(NthFibonacciModelList.ToList());
         }
 
         [HttpPost]
         public IActionResult Index(string Number)
         {
-            NthFibonacciListViewModel NthFibonacciListViewModel = new NthFibonacciListViewModel();
-            NthFibonacciListViewModel.Number = Number;
-
             //return View();
             try
             {
-                //NthFibonacciModel = (List<NthFibonacciModel>)repository.Get_Nth_Fibonacci_Repository(Convert.ToDouble(Number));
-                NthFibonacciListViewModel.NthFibonacciModels = repository.Get_Nth_Fibonacci_Repository(Convert.ToDouble(Number));
-                NthFibonacciListViewModel.Number = Number;
-                //return View(NthFibonacciListViewModel);
+                NthFibonacciModelList = (List<NthFibonacciModel>)repository.Get_Nth_Fibonacci_Repository(Convert.ToDouble(Number));
             }
             catch (Exception e)
             {
@@ -56,10 +45,7 @@ namespace MVCCore_Examples.Controllers
                 ModelState.AddModelError("", "The Number entered is the wrong type.  It should be an integer or a double.");
             }
 
-            //return View(repository.Get_Nth_Fibonacci_Repository(Convert.ToDouble(Number)));
-            return View(NthFibonacciListViewModel);
-            //return View(NthFibonacciModel.ToList());
-
+            return View(NthFibonacciModelList.ToList());
         }
 
 

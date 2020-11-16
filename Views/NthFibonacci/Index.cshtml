@@ -1,6 +1,5 @@
 ﻿<!-- This controller is used the IEnumerable<INthFibonacciModel which was created by the interface and the repository -->
-<!-- model IEnumerable<NthFibonacciModel --> 
-@model MVCCore_Examples.Models.NthFibonacci.NthFibonacciListViewModel
+@model IEnumerable<NthFibonacciModel>
 @{
     ViewData["Title"] = "Nth Fibonacci";
 }
@@ -10,24 +9,16 @@
     var NthFibonacciString = "";
 }
 
-@{ 
-    if (Model.NthFibonacciModels == null)
+@{ foreach (var element in Model)
     {
-        NthFibonacciString = "";
-    }
-    else
-    {
-        foreach (var element in Model.NthFibonacciModels)
+        NthFibonacciType = Convert.ToString(@element.NthFibonacciType);
+        if (NthFibonacciType == "True")
         {
-            NthFibonacciType = Convert.ToString(@element.NthFibonacciType);
-            if (NthFibonacciType == "True")
-            {
-                NthFibonacciString = "This is a Fibonacci Number";
-            }
-            else
-            {
-                NthFibonacciString = "This is not a Fibonacci Number";
-            }
+            NthFibonacciString = "This is a Fibonacci Number";
+        }
+        else
+        {
+            NthFibonacciString = "This is not a Fibonacci Number";
         }
     }
 }
@@ -55,20 +46,10 @@
             <div asp-validation-summary="All" class="text-danger" style="text-align:left"></div>
             <div id="divNumber" style="border:solid">
                 <!-- <button id="btnShowHide" onclick="ShowHide()">Show Calculation</button>
-            <input type="button" value="Export to Excel" onclick="location.href='Url.Action("Excel", "Calculation")'" /> -->
+        <input type="button" value="Export to Excel" onclick="location.href='Url.Action("Excel", "Calculation")'" /> -->
                 <br />
                 <label for="txtNumber">Number to validate against Nth Fibonacci:</label>&emsp;&emsp;&emsp;
-                @{
-                    if (Model.NthFibonacciModels == null)
-                    {
-                        <input type="text" id="txtNumber" name="Number" placeholder="Enter Number here" value="" />
-                    }
-                    else
-                    {
-                        <input type="text" id="txtNumber" name="Number" placeholder="Enter Number here" value=@Model.Number />
-                    }
-                }
-                &emsp;&emsp;&emsp;
+                <input type="text" id="txtNumber" name="Number" placeholder="Enter Number here" />&emsp;&emsp;&emsp;
                 <input type="submit" value="Submit">
                 <input name="__RequestVerificationToken" type="hidden" value="<token_generated_here>">
                 <br />
@@ -79,45 +60,34 @@
 
         <br />
 
-        @{
-            if (Model.NthFibonacciModels == null)
-            {
-            }
-            else
-            {
-                <table id="example" class="table table-responsive table-hover">
-                    <tbody>
-                        @foreach (var element in Model.NthFibonacciModels)
-                        {
-                            <tr>
-                                <th scope="row">Number</th>
-                                <td>@element.Number</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Calculated Number 1 : Math.Sqrt(5 * (Number * Number) + 4))</th>
-                                <td>@element.CalculatedNumber1</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Calculated Number 2 : Math.Sqrt(5 * (Number * Number) - 4))</th>
-                                <td>@element.CalculatedNumber2</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Is this a Fibonacci Number?</th>
-                                <td>@element.NthFibonacciType</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-
-                <br />
-                <br />
-                <div id="divConfirmation" class="Confirmation" style="border:solid">
-                    @NthFibonacciString
-                </div>
-            }
-        }
-
-
+        <table id="example" class="table table-responsive table-hover">
+            <tbody>
+                @foreach (var element in Model)
+                {
+                    <tr>
+                        <th scope="row">Number</th>
+                        <td>@element.Number</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Calculated Number 1 : Math.Sqrt(5 * (Number * Number) + 4))</th>
+                        <td>@element.CalculatedNumber1</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Calculated Number 2 : Math.Sqrt(5 * (Number * Number) - 4))</th>
+                        <td>@element.CalculatedNumber2</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Is this a Fibonacci Number?</th>
+                        <td>@element.NthFibonacciType</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        <br />
+        <div id="divConfirmation" class="Confirmation" style="border:solid">
+            @NthFibonacciString
+        </div>
 
     </center>
     <br />
