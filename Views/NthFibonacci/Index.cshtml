@@ -35,24 +35,25 @@
     <br />
     <div id="divCalculationSummary" class="CalculationSummary" style="display:none; border:solid">
         <center>
-        Math.Sqrt(5 * (Number * Number) + 4) or Math.Sqrt(5 * (Number * Number) -4) <br />
-        If the result cannot be parsed as an integer (i.e. has no decimal places), then it is an Invalid Fibonacci number.<br />
-        If it can be parsed, then it is a valid Fibonacci number.<br />
-            </center>
+            Math.Sqrt(5 * (Number * Number) + 4) or Math.Sqrt(5 * (Number * Number) -4) <br />
+            If the result cannot be parsed as an integer (i.e. has no decimal places), then it is an Invalid Fibonacci number.<br />
+            If it can be parsed, then it is a valid Fibonacci number.<br />
+        </center>
     </div>
     <br />
     <center>
         <form method="post" action="/NthFibonacci/Index">
+            <div asp-validation-summary="All" class="text-danger" style="text-align:left"></div>
             <div id="divNumber" style="border:solid">
                 <!-- <button id="btnShowHide" onclick="ShowHide()">Show Calculation</button>
-    <input type="button" value="Export to Excel" onclick="location.href='Url.Action("Excel", "Calculation")'" /> -->
-                <br/>
+        <input type="button" value="Export to Excel" onclick="location.href='Url.Action("Excel", "Calculation")'" /> -->
+                <br />
                 <label for="txtNumber">Number to validate against Nth Fibonacci:</label>&emsp;&emsp;&emsp;
                 <input type="text" id="txtNumber" name="Number" placeholder="Enter Number here" />&emsp;&emsp;&emsp;
                 <input type="submit" value="Submit">
                 <input name="__RequestVerificationToken" type="hidden" value="<token_generated_here>">
-                <br/>
-                <br/>
+                <br />
+                <br />
             </div>
 
         </form>
@@ -72,7 +73,7 @@
                         <td>@element.CalculatedNumber1</td>
                     </tr>
                     <tr>
-                        <th scope="row">Calculated Number 2 : Math.Sqrt(5 * (Number * Number) + 4))</th>
+                        <th scope="row">Calculated Number 2 : Math.Sqrt(5 * (Number * Number) - 4))</th>
                         <td>@element.CalculatedNumber2</td>
                     </tr>
                     <tr>
@@ -85,7 +86,8 @@
         <br />
         <br />
         <div id="divConfirmation" class="Confirmation" style="border:solid">
-            @NthFibonacciString</div>
+            @NthFibonacciString
+        </div>
 
     </center>
     <br />

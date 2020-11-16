@@ -43,4 +43,3 @@ C:\General Files\Job Applications\Chess\MVCCore_Examples\MVCCore_Examples\obj\De
 C:\General Files\Job Applications\Chess\MVCCore_Examples\MVCCore_Examples\obj\Debug\netcoreapp3.1\MVCCore_Examples.pdb
 C:\General Files\Job Applications\Chess\MVCCore_Examples\MVCCore_Examples\obj\Debug\netcoreapp3.1\MVCCore_Examples.genruntimeconfig.cache
 C:\General Files\Job Applications\Chess\MVCCore_Examples\MVCCore_Examples\obj\Debug\netcoreapp3.1\Razor\Views\NthFibonacci\Index.cshtml.g.cs
-C:\General Files\Job Applications\Chess\MVCCore_Examples\MVCCore_Examples\obj\Debug\netcoreapp3.1\MVCCore_Examples.csprojAssemblyReference.cache
